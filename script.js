@@ -1,23 +1,33 @@
-const form = document.getElementById("form");
-const result = document.getElementById("result");
+const form = document.getElementById("reviewForm");
+const predictionText = document.getElementById("predictionText");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const data = Object.fromEntries(new FormData(form));
+  // Build JSON data
+  const data = {
+    review: document.querySelector("textarea[name='review']").value,
+    user_label: document.querySelector("input[name='user_label']:checked").value
+  };
 
-  const res = await fetch("https://deceptive-review-detector-api.onrender.com/predict", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
+  try {
+    const res = await fetch("https://deceptive-review-detector-api.onrender.com/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
 
-  const json = await res.json();
+    const json = await res.json();
 
-  result.textContent = `
-    Model says: ${json.prediction === 1 ? "Fake" : "Real"}
-    Confidence: ${json.confidence.toFixed(2)}
-  `;
+    if (res.ok) {
+      // Display model prediction
+      predictionText.textContent = `Model prediction: ${json.prediction}`;
+    } else {
+      predictionText.textContent = `Error: ${json.error}`;
+    }
+  } catch (err) {
+    predictionText.textContent = "Server error, try again later.";
+  }
 });

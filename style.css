@@ -1,12 +1,22 @@
 body {
-  font-family: Arial;
-  max-width: 500px;
+  font-family: Arial, sans-serif;
+  max-width: 600px;
   margin: 50px auto;
 }
 
-input, textarea, button {
-  display: block;
+textarea {
   width: 100%;
-  margin: 10px 0;
+  height: 120px;
   padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
 }
