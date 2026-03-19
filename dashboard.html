@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confusion Matrix Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Model vs User Confusion Matrix</h1>
+
+  <table id="matrix">
+    <tr>
+      <th></th>
+      <th>Predicted Deceptive</th>
+      <th>Predicted Truthful</th>
+    </tr>
+    <tr>
+      <th>Actual Deceptive</th>
+      <td id="tn">-</td>
+      <td id="fp">-</td>
+    </tr>
+    <tr>
+      <th>Actual Truthful</th>
+      <td id="fn">-</td>
+      <td id="tp">-</td>
+    </tr>
+  </table>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
